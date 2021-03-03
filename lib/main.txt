@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+void main() =>
+    runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xff4B76E4),
+      body: SafeArea(
+        child: Center(
+          child: Card(
+            elevation: 12,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  FlutterLogo(size: 50),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Text('Scratch Card',
+                          style: Theme.of(context).textTheme.headline6),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
