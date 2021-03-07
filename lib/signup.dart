@@ -1,40 +1,15 @@
-import 'package:Nutral/forgotpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:Nutral/signup.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Color(0xff5F5F5F),
   ));
-  runApp(MyApp());
+  runApp(Home());
 }
 
-class SlideRightRoute extends PageRouteBuilder {
-  final Widget page;
-  SlideRightRoute({this.page})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-        );
-}
-
-class MyApp extends StatelessWidget {
+class Home extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -43,13 +18,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Homepage(),
+      home: SignUp(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class Homepage extends StatelessWidget {
+class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,27 +37,20 @@ class Homepage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 50,
                 ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                IconButton(
+                  icon: Icon(
+                    Icons.keyboard_arrow_left,
+                    size: 30,
                   ),
-                  padding: const EdgeInsets.all(10),
-                  textColor: Color(0xff000000),
-                  color: Color(0xffffffff),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      SlideRightRoute(
-                        page: SignUp(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
-                  child: Text('SIGN UP'),
+                  color: Colors.white,
                 ),
               ],
             ),
@@ -104,12 +72,72 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Text('SIGN IN',
+            Text('SIGN UP',
                 style: TextStyle(
                     color: Colors.black87,
                     fontFamily: 'assets/Roboto-Regular.ttf',
                     fontSize: 20,
                     fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            TextField(
+              autofocus: false,
+              obscureText: false,
+              obscuringCharacter: "*",
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: Icon(Icons.person, size: 22),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                hintText: "Firstname",
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              autofocus: false,
+              obscureText: false,
+              obscuringCharacter: "*",
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: Icon(Icons.person, size: 22),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                hintText: "Secondname",
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              autofocus: false,
+              obscureText: false,
+              obscuringCharacter: "*",
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: Icon(Icons.person, size: 22),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                hintText: "Email Id",
+              ),
+            ),
             SizedBox(height: 20),
             TextField(
               autofocus: false,
@@ -147,7 +175,7 @@ class Homepage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.transparent, width: 0),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                hintText: "Password",
+                hintText: "Set Password",
                 hintStyle: TextStyle(decoration: TextDecoration.none),
               ),
             ),
@@ -167,79 +195,10 @@ class Homepage extends StatelessWidget {
                   color: Colors.white,
                   onPressed: () {},
                   child: Text(
-                    'LOGIN',
+                    'SUBMIT',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 10),
-            new InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  SlideRightRoute(
-                    page: forgotpassword(),
-                  ),
-                );
-              },
-              child: new Padding(
-                padding: new EdgeInsets.all(10.0),
-                child: new Text('Forgot Password?',
-                    style: TextStyle(
-                        color: Colors.black87,
-                        fontFamily: 'assets/Roboto-Regular.ttf',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text('Or',
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontFamily: 'assets/Roboto-Regular.ttf',
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal)),
-            SizedBox(
-              height: 10,
-            ),
-            Column(
-              children: <Widget>[
-                FractionallySizedBox(
-                  widthFactor: 0.6,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    textColor: Colors.white,
-                    color: Color(0xff3B5998),
-                    onPressed: () {},
-                    child: Text('Sign in with Facebook',
-                        style:
-                            TextStyle(fontSize: 18, color: Color(0xffffffff))),
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                FractionallySizedBox(
-                  widthFactor: 0.6,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    textColor: Colors.black,
-                    color: Color(0xffffffff),
-                    onPressed: () {},
-                    child: Text('Sign in with Google',
-                        style:
-                            TextStyle(fontSize: 18, color: Color(0xffD84B37))),
-                  ),
-                )
               ],
             ),
             SizedBox(
